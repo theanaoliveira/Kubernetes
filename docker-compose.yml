@@ -1,0 +1,12 @@
+version: '3.7'
+
+services:
+  nodejs-demo-web:
+    build: 
+      context: ./nodejs-demo
+      dockerfile: Dockerfile
+    networks:
+      - demo-kubernetes
+
+networks:
+  demo-kubernetes:
