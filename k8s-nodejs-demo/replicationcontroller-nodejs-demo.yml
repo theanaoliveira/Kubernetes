@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: rc-nodejs-demo
+spec:
+  replicas: 2
+  selector:
+    app: helloworld
+  template:
+    metadata:
+      name: nodejs-demo
+      labels:
+        app: helloworld
+    spec:
+      containers:
+        - name: k8s-nodejs-demo
+          image: theanaoliveira/nodejs-demo:2
+          ports:
+            - name: nodejs-port
+              containerPort: 3000

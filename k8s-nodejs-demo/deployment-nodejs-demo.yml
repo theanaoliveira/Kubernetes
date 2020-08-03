@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deployment-nodejs-demo
+spec:
+  selector:
+    matchLabels:
+      app: helloworld
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: helloworld
+    spec:
+      containers:
+        - name: k8s-nodejs-demo
+          image: theanaoliveira/nodejs-demo:2
+          ports:
+            - name: nodejs-port
+              containerPort: 3000
