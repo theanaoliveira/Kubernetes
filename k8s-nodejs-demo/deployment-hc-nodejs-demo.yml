@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deployment-hc-nodejs-demo
+spec:
+  selector:
+    matchLabels:
+      app: helloworld
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: helloworld
+    spec:
+      containers:
+        - name: k8s-nodejs-demo
+          image: theanaoliveira/nodejs-demo:2
+          resources:
+            limits:
+              memory: "128Mi"
+              cpu: "500m"
+          ports:
+            - name: nodejs-port
+              containerPort: 3000
+          #HealthCheck  
+          livenessProbe:
+            httpGet:
+              path: /
+              port: nodejs-port
+            initialDelaySeconds: 15
+            timeoutSeconds: 30

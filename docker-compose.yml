@@ -8,5 +8,12 @@ services:
     networks:
       - demo-kubernetes
 
+  csharp-demo-web:
+    build: 
+      context: ./csharp-demo
+      dockerfile: Dockerfile
+    networks:
+      - demo-kubernetes
+
 networks:
   demo-kubernetes:
